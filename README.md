@@ -3,23 +3,23 @@ Downloading data from SCB using JSON is rather simple in R. Here is a function t
 
 ## Using
 
-1. Select data, for example [CPI](http://www.statistikdatabasen.scb.se/pxweb/en/ssd/START__PR__PR0101__PR0101A/KPIFastM/)
-2. Click on the link: [API for this table]() located below the resulting table output
-3. Save the JSON code to a file with extension json, for example "cpi.json"
+1. Select data, for example [population data](http://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy)
+2. Click on the link: `API for this table` located below the resulting table output
+3. Copy and paste the JSON code to a file with extension json, for example "cpi.json"
 4. Edit the json code as indicated below.
-4. Copy and paste the url in your code as shown below: `cpiurl <- "http://api.scb.se/ ..."`
+4. Copy and paste the url in your code as shown below: `url <- "http://api.scb.se/ ..."`
 5. Get the data_frame by invoking `get_scb()`. 
 
 ```
 library(scbapi)
-cpiurl <- "http://api.scb.se/OV0104/v1/doris/en/ssd/START/PR/PR0101/PR0101A/KPIFastM"
-df <- get_scb("cpi", cpiurl)
+url <- "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy"
+df <- get_scb("cpi", url)
 ```
-The data frame generated is essentially the transpose of the table shown on screen in the search result. Variable names of your choice have to be set manually, for example with `names(df) <- c("time", "cpi")`. 
+The data frame generated is essentially the transpose of the table shown on screen in the search result. Variable names of your choice have to be set manually, for example with `names(df) <- c("time", "pop")`. 
 
 ### Installing
 
-To use, download the function get_url.R, or install the package using devtools:
+To use, download the function in R/get_scb.R, or install the package using devtools:
 
 ```
 install.packages("devtools")
@@ -54,7 +54,7 @@ It is a little unfortunate that SCB does not put the url in the json-query. If t
 
 ## Limitations
 
-The current version does not have much error checking and makes some specific assumptions about the structure of the SCB output. The program has worked for me in the downloads I have needed to do, but it is not unreasonable that it will fail with some/much output. Specifically I have assumed that there is a time dimension in the returned data, and that this is the lowest index in the data vector returned as `query$dataset$value` in the returned JSON data.
+The current version does not have much error checking and makes some specific assumptions about the structure of the SCB output. The program has worked for me in the downloads I have needed to do, but it is not unreasonable that it will fail with some/much output. Specifically I have assumed that there is a time dimension in the returned data, and that this is the lowest index in the data vector returned as `query$dataset$value` in the returned JSON data. It also has minimal error checking of input and the response from api.scb.se. 
 
 When I have some free time I will check the generality in the API. But since it works for me, it might take some time before I have some time.
 
