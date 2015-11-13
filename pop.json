@@ -1,0 +1,54 @@
+{
+    "query": [
+        {
+            "code": "Region",
+            "selection": {
+                "filter": "vs:RegionRiket99",
+                "values": []
+            }
+        },
+        {
+            "code": "Civilstand",
+            "selection": {
+                "filter": "item",
+                "values": [
+                    "OG",
+                    "G",
+                    "SK",
+                    "ÄNKL"
+                    ]
+            }
+        },
+        {
+            "code": "Alder",
+            "selection": {
+                "filter": "vs:ÅlderTotA",
+                "values": []
+            }
+        },
+        {
+            "code": "Kon",
+            "selection": {
+                "filter": "item",
+                "values": [
+                    "1",
+                    "2"
+                    ]
+            }
+        },
+        {
+            "code": "ContentsCode",
+            "selection": {
+                "filter": "item",
+                "values": [
+                    "BE0101N1"
+                    ]
+            }
+        }
+        ],
+    "response": {
+        "format": "json-stat"
+    },
+    "url": "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy",
+    "weburl": "http://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy"
+}
