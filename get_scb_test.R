@@ -1,6 +1,4 @@
-library(tidyr)
-library(dplyr)
-library(stringr)
+library(scbapi)
 
 # Population
 pop <- get_scb("pop")
