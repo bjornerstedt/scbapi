@@ -10,10 +10,6 @@
 #
 
 get_scb <- function(fname, download_data = TRUE, save_data = FALSE, url = NA) {
-  library(httr)
-  library(dplyr)
-  library(jsonlite)
-  library(stringr)
   fn <- str_match(fname,"(.*).json")[2]
   if(!is.na(fn))
     fname <- fn
