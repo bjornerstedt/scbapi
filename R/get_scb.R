@@ -11,6 +11,7 @@
 
 get_scb <- function(fname, download_data = TRUE, save_data = FALSE, url = NA) {
   library(httr)
+  library(dplyr)
   library(jsonlite)
   library(stringr)
   fn <- str_match(fname,"(.*).json")[2]
@@ -34,5 +35,5 @@ get_scb <- function(fname, download_data = TRUE, save_data = FALSE, url = NA) {
   lab <- unlist(scb$dataset$dimension$Tid$category$label)
   if(length(lab) != length(indata))
     indata <- matrix(indata, nrow = length(lab))
-  data_frame(time = lab, x = indata )
+  bind_cols(data_frame(time = lab ), x = as.data.frame(indata) )
 }
