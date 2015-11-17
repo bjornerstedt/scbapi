@@ -9,7 +9,7 @@
 #   http://www.github.com/bjornerstedt/scbapi
 #
 
-get_scb <- function(fname, download_data = TRUE, save_data = FALSE, url = NA) {
+get_scb <- function(fname, download_data = TRUE, save_data = FALSE, url = NA, colnames = NULL) {
   fn <- str_match(fname,"(.*).json")[2]
   if(!is.na(fn))
     fname <- fn
@@ -31,5 +31,8 @@ get_scb <- function(fname, download_data = TRUE, save_data = FALSE, url = NA) {
   lab <- unlist(scb$dataset$dimension$Tid$category$label)
   if(length(lab) != length(indata))
     indata <- matrix(indata, nrow = length(lab))
-  bind_cols(data_frame(time = lab ), x = as.data.frame(indata) )
+  df <- bind_cols(data_frame(time = lab ), x = as.data.frame(indata) )
+  if(!is.null(colnames))
+    colnames(df) <- colnames
+  df
 }
