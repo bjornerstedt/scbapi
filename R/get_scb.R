@@ -1,14 +1,22 @@
-# Download SCB data
-# Jonas Björnerstedt
-#
-# This function downloads queries saved as JSON files
-# returning a data_frame
-#
-# For more info, see:
-#
-#   http://www.github.com/bjornerstedt/scbapi
-#
-
+#' Download SCB data
+#'
+#' \code{get_scb} downloads a JSON query to SCB as a data_frame
+#'
+#' For more info, see:
+#'
+#'  http://www.github.com/bjornerstedt/scbapi
+#'
+#' @param fname File name of JSON query
+#' @param download_data Boolean indicating whether downloaded or saved data should be used
+#' @param save_data Boolean indicating whether downloaded data should be saved to a JSON data file
+#' @param url Url string if not a url field in the JSON query
+#' @param colnames String array of column names.
+#'
+#' @return A data_frame with time as the first column
+#' @export
+#'
+#' @examples df <- get_scb("gdpreal.json")
+#' df <- get_scb("sick1", colnames = c("time", "sm", "sw"))
 get_scb <- function(fname, download_data = TRUE, save_data = FALSE, url = NA, colnames = NULL) {
   fn <- str_match(fname,"(.*).json")[2]
   if(!is.na(fn))

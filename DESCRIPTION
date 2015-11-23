@@ -1,10 +1,16 @@
 Package: scbapi
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Import data from SCB (Statistics Sweden) using a JSON qurey
 Version: 0.1
 Date: 2015-11-13
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Jonas Björnerstedt
+Maintainer: Jonas Björnerstedt <github@bjornerstedt.org>
+Description: Creates a data_frame (and optionally a JSON data file) based on the JSON query.
+License: GPL
 LazyData: TRUE
+RoxygenNote: 5.0.1
+Imports:
+    dplyr,
+    stringr,
+    jsonlite,
+    httr
