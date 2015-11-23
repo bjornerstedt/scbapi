@@ -27,7 +27,7 @@ A data_frame with time as the first column
 \details{
 For more info, see:
 
-http://www.github.com/bjornerstedt/scbapi
+\url{http://www.github.com/bjornerstedt/scbapi}
 }
 \examples{
 df <- get_scb("gdpreal.json")

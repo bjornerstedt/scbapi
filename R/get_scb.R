@@ -4,7 +4,7 @@
 #'
 #' For more info, see:
 #'
-#'  http://www.github.com/bjornerstedt/scbapi
+#'  \url{http://www.github.com/bjornerstedt/scbapi}
 #'
 #' @param fname File name of JSON query
 #' @param download_data Boolean indicating whether downloaded or saved data should be used
