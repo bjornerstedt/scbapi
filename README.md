@@ -15,7 +15,7 @@ library(scbapi)
 popurl <- "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy"
 df <- get_scb("cpi", url = popurl )
 ```
-The data frame generated is essentially the transpose of the table shown on screen in the search result. Variable names of your choice have to be set manually, for example with `names(df) <- c("time", "pop")`. 
+The data is returned in long format. Use `tidyr::spread` to reshape data.
 
 ### Installing
 

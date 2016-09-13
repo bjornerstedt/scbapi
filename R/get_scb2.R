@@ -18,8 +18,7 @@
 #' @examples df <- get_scb("gdpreal.json")
 #' df <- get_scb("sick1", colnames = c("time", "sm", "sw"))
 #'
-
-get_scb <- function(fname, download_data = TRUE, save_data = FALSE, url = NA, colnames = NULL, returnList = FALSE) {
+get_scb2 <- function(fname, download_data = TRUE, save_data = FALSE, url = NA, colnames = NULL, returnList = FALSE) {
   fn <- str_match(fname,"(.*).json")[2]
   if(!is.na(fn))
     fname <- fn
@@ -39,15 +38,12 @@ get_scb <- function(fname, download_data = TRUE, save_data = FALSE, url = NA, co
 
   if(returnList)
     return(scb)
-
-  cats = list()
-  for (i in length(scb$dataset$dimension$size):1) {
-    if (scb$dataset$dimension$size[i] > 1) {
-      cats[[scb$dataset$dimension$id[[i]] ]] =
-        as.character( scb$dataset$dimension[[i]]$category$label )
-    }
-  }
-  df = expand.grid(cats, stringsAsFactors = FALSE, KEEP.OUT.ATTRS = FALSE)
-  df$value = scb$dataset$value
-  return(df)
+  indata <- scb$dataset$value
+  lab <- unlist(scb$dataset$dimension$Tid$category$label)
+  if(length(lab) != length(indata))
+    indata <- matrix(indata, nrow = length(lab))
+  df <- bind_cols(data_frame(time = lab ), x = as.data.frame(indata) )
+  if(!is.null(colnames))
+    colnames(df) <- colnames
+  df
 }
