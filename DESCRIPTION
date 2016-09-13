@@ -3,8 +3,8 @@ Type: Package
 Title: Import data from SCB (Statistics Sweden) using a JSON qurey
 Version: 0.1
 Date: 2015-11-13
-Author: Jonas Björnerstedt
-Maintainer: Jonas Björnerstedt <github@bjornerstedt.org>
+Author: Jonas Bjornerstedt
+Maintainer: Jonas Bjornerstedt <github@bjornerstedt.org>
 Description: Creates a data_frame (and optionally a JSON data file) based on the JSON query.
 License: GPL
 LazyData: TRUE
