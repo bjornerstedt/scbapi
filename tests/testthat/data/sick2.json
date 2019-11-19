@@ -1,0 +1,46 @@
+{
+  "query": [
+    {
+      "code": "Franvaroorsak",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "FRSJUK"
+          ]
+      }
+    },
+    {
+      "code": "Kon",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "1",
+          "2"
+        ]
+      }
+    },
+    {
+      "code": "Alder",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "tot16-64"
+        ]
+      }
+    },
+    {
+      "code": "ContentsCode",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "AM0401SB"
+          ]
+      }
+    }
+  ],
+  "response": {
+        "format": "json-stat"
+  },
+  "url": "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0401/AM0401K/NAKUFranvOrsakM",
+  "weburl": "http://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0401__AM0401K/NAKUFranvOrsakM"
+}

@@ -4,8 +4,14 @@
 \alias{get_scb2}
 \title{Download SCB data}
 \usage{
-get_scb2(fname, download_data = TRUE, save_data = FALSE, url = NA,
-  colnames = NULL, returnList = FALSE)
+get_scb2(
+  fname,
+  download_data = TRUE,
+  save_data = FALSE,
+  url = NA,
+  colnames = NULL,
+  returnList = FALSE
+)
 }
 \arguments{
 \item{fname}{File name of JSON query}
@@ -27,11 +33,10 @@ A data_frame with time as the first column
 \details{
 For more info, see:
 
-\url{http://www.github.com/bjornerstedt/scbapi}
+ \url{http://www.github.com/bjornerstedt/scbapi}
 }
 \examples{
 df <- get_scb("gdpreal.json")
 df <- get_scb("sick1", colnames = c("time", "sm", "sw"))
 
 }
-

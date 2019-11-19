@@ -5,7 +5,8 @@
       "selection": {
         "filter": "item",
         "values": [
-          "BNPM"
+         "BNPM",
+         "KEHUS"
         ]
       }
     },
@@ -22,5 +23,6 @@
   "response": {
         "format": "json-stat"
   },
-  "url": "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/NR/NR0103/NR0103A/NR0103ENS2010T01Kv"
+  "url": "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/NR/NR0103/NR0103A/NR0103ENS2010T01Kv",
+  "weburl": "http://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__NR__NR0103__NR0103A/NR0103ENS2010T06Kv/"
 }

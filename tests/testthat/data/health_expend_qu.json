@@ -1,0 +1,27 @@
+{
+    "query": [
+        {
+            "code": "Andamal",
+            "selection": {
+                "filter": "item",
+                "values": [
+                    "06"
+                    ]
+            }
+        },
+        {
+            "code": "ContentsCode",
+            "selection": {
+                "filter": "item",
+                "values": [
+                    "NR0103BZ"
+                    ]
+            }
+        }
+        ],
+    "response": {
+        "format": "json-stat"
+    },
+    "url": "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/NR/NR0103/NR0103A/NR0103ENS2010T02Kv",
+    "weburl": "http://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__NR__NR0103__NR0103A/NR0103ENS2010T02Kv/"
+}
