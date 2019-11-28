@@ -3,6 +3,21 @@ Downloading data from SCB (Statistics Sweden) using JSON is rather simple in R. 
 
 ## Using
 
+ On the SCB website, save the data as a `JSON-stat file (json)`, in the `Save tqble as` listbox
+ 
+ ![SCB menu]("SCB-menu.png")
+ 
+ After downloading the file, it can be converted into a dataframe using
+ 
+```r
+library(scbapi)
+df <- scb_data(filename)
+```
+
+## Downloading with the json-api
+
+Alternatively, the query can be saved as a JSON-file and the dataset downloaded later.
+
 1. Select data, for example [population data](http://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy)
 2. Click on the link: `API for this table` located below the resulting table output
 3. Copy and paste the JSON code to a file with extension json, for example "cpi.json"
@@ -10,7 +25,7 @@ Downloading data from SCB (Statistics Sweden) using JSON is rather simple in R. 
 4. Copy and paste the url in your code as shown below: `url <- "http://api.scb.se/ ..."`
 5. Get the data_frame by invoking `get_scb()`. 
 
-```
+```r
 library(scbapi)
 popurl <- "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy"
 df <- get_scb("cpi", url = popurl )

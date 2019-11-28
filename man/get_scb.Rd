@@ -37,6 +37,8 @@ For more info, see:
 }
 \examples{
 df <- get_scb("gdpreal.json")
-df <- get_scb("sick1", colnames = c("time", "sm", "sw"))
+df <- get_scb(
+url = "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/PR/PR0101/PR0101A/KPIFastM",
+query = '{ "query": []}')
 
 }

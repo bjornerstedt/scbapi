@@ -16,7 +16,9 @@
 #' @export
 #'
 #' @examples df <- get_scb("gdpreal.json")
-#' df <- get_scb("sick1", colnames = c("time", "sm", "sw"))
+#' df <- get_scb(
+#' url = "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/PR/PR0101/PR0101A/KPIFastM",
+#' query = '{ "query": []}')
 #'
 
 get_scb <- function(file = NA, query = NA, download_data = TRUE, save_data = FALSE,
@@ -42,24 +44,50 @@ get_scb <- function(file = NA, query = NA, download_data = TRUE, save_data = FAL
         queryobj$response$format = "json-stat"
         querystring = jsonlite::toJSON(queryobj, pretty=TRUE, auto_unbox = TRUE)
         data = httr::content(httr::POST(url, body = querystring, encode = "json"), "text")
+        if(stringr::str_starts(data, "<!DOCTYPE html PUBLIC")) {
+            stop(stringr::str_c("SCB Server error: ", stringr::str_match(data,".*<title>(.*)</title>.*")[2]) )
+        }
         if(save_data){
             writeLines(data, stringr::str_c(file, "_data.json"))
         }
-        scb <- jsonlite::fromJSON(data)
+        result <- jsonlite::fromJSON(data)
     } else {
         if( is.na(file.info(stringr::str_c(file, "_data.json"))[1,1]) )
             stop("Could not find data file")
-        scb <- jsonlite::fromJSON(readLines(stringr::str_c(file, "_data.json")))
+        result <- jsonlite::fromJSON(readLines(stringr::str_c(file, "_data.json")))
     }
 
     if(returnList)
-        return(scb)
+        return(result[["dataset"]])
     else
-        return(list_to_df_old(scb))
+        return(list_to_df(result[["dataset"]]))
+}
+
+#' \code{scb_data} Converts a JSON dataset from Statistics Sweden (SCB) to a data_frame
+#'
+#'  \url{http://www.github.com/bjornerstedt/scbapi}
+#'
+#' @param file File name of JSON data file
+#' @export
+#'
+#' @examples df <- scb_data("gdpreal.json")
+#'
+scb_data <- function(file) {
+  # if( is.na(file.info(file)) )
+  #   stop("Could not find data file")
+  data = readLines(file, warn=FALSE)
+  data[length(data)] = stringr::str_c(data[length(data)] ,"\n")
+  # if(! stringr::str_starts(data, "{")) {
+  #   stop(stringr::str_c("SCB Server error: ", stringr::str_match(data,".*<title>(.*)</title>.*")[2]) )
+  # }
+
+  result <- jsonlite::fromJSON(data)
+  return(list_to_df(result[["dataset"]]))
+
 }
 
 list_to_df <- function(scb) {
-    cnames = scb[["dimension"]][["id"]]
+  cnames = scb[["dimension"]][["id"]]
     sizes = scb[["dimension"]][["size"]]
 
     # INCLUDE?
@@ -80,11 +108,11 @@ list_to_df <- function(scb) {
         after = if(i < length(sizes))  Reduce(`*`, sizes[(i+1):length(sizes)]) else 1
         before = if(i > 1)  Reduce(`*`, sizes[1:(i-1)]) else 1
         # Names instead of label
-        # nn = names(scb$dimension[[cn[1]]][["category"]][["label"]])
-        nn = scb$dimension[[cnames[i]]][["category"]][["label"]]
+        # nn = names(scb$dimension[[cnames[i]]][["category"]][["label"]])
+        nn = unlist(scb[["dimension"]][[cnames[i]]][["category"]][["label"]])
         df[[cnames[i]]] = rep(nn, times = before, each = after)
     }
-    df[["values"]] = scb[["value"]]
+    df[["values"]] = unlist(scb[["value"]])
     return(df)
 }
 

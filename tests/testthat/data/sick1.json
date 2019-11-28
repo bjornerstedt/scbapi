@@ -21,7 +21,7 @@
     }
   ],
   "response": {
-        "format": "json-stat"
+    "format": "px"
   },
   "url": "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0402/AM0402D/AKUMFranv",
   "weburl": "http://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0401__AM0401K/NAKUFranvOrsakM"

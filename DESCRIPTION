@@ -8,7 +8,7 @@ Maintainer: Jonas Bjornerstedt <github@bjornerstedt.org>
 Description: Creates a data_frame (and optionally a JSON data file) based on the JSON query.
 License: GPL
 LazyData: TRUE
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.1
 Imports:
     dplyr,
     stringr,

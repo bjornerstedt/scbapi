@@ -6,7 +6,7 @@
         "filter": "item",
         "values": [
           "FRSJUK"
-          ]
+        ]
       }
     },
     {
@@ -33,14 +33,14 @@
       "selection": {
         "filter": "item",
         "values": [
-          "AM0401SB"
-          ]
+          "000004AW"
+        ]
       }
     }
   ],
   "response": {
         "format": "json-stat"
   },
-  "url": "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0401/AM0401K/NAKUFranvOrsakM",
-  "weburl": "http://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0401__AM0401K/NAKUFranvOrsakM"
+  "url": "http://api.scb.se/OV0104/v1/doris/en/ssd/START/AM/AM0401/AM0401K/NAKUFranvOrsakNM",
+  "weburl": "http://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0401__AM0401K/NAKUFranvOrsakNM/"
 }

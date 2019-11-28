@@ -2,3 +2,4 @@
 
 export(get_scb)
 export(get_scb2)
+export(scb_data)
