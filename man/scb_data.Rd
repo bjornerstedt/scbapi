@@ -2,17 +2,14 @@
 % Please edit documentation in R/get_scb.R
 \name{scb_data}
 \alias{scb_data}
-\title{\code{scb_data} Converts a JSON dataset from SCB to a data_frame}
+\title{\code{scb_data} Converts a JSON dataset from Statistics Sweden (SCB) to a data_frame}
 \usage{
 scb_data(file)
 }
 \arguments{
-\item{file}{File name of JSON query}
+\item{file}{File name of JSON data file}
 }
 \description{
-For more info, see:
-}
-\details{
 \url{http://www.github.com/bjornerstedt/scbapi}
 }
 \examples{
