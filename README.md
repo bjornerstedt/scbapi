@@ -5,7 +5,7 @@ Downloading data from SCB (Statistics Sweden) using JSON is rather simple in R. 
 
  On the SCB website, save the data as a `JSON-stat file (json)`, in the `Save tqble as` listbox
  
- ![SCB menu]("SCB-menu.png")
+ ![SCB menu illustration](SCB-menu.png)
  
  After downloading the file, it can be converted into a dataframe using
  
