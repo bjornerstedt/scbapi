@@ -73,20 +73,26 @@ get_scb <- function(file = NA, query = NA, download_data = TRUE, save_data = FAL
 #' @examples df <- scb_data("gdpreal.json")
 #'
 scb_data <- function(file) {
-  # if( is.na(file.info(file)) )
-  #   stop("Could not find data file")
-  data = readLines(file, warn=FALSE)
-  data[length(data)] = stringr::str_c(data[length(data)] ,"\n")
-  # if(! stringr::str_starts(data, "{")) {
-  #   stop(stringr::str_c("SCB Server error: ", stringr::str_match(data,".*<title>(.*)</title>.*")[2]) )
-  # }
-
-  result <- jsonlite::fromJSON(data)
+  if( is.na(file.info(file)[[1,1]]) )
+    stop("Could not find data file")
+  indata = readLines(file, warn=FALSE)
+  result <- jsonlite::fromJSON(indata)
+  if (names(result)[[1]]  != "dataset") {
+    if (names(result)[[1]] == "columns") {
+      stop("Error: This is a SCB JSON file, not a JSON-data file.")
+    }
+    stop("Error: It is not a SCB JSON-data file.")
+  }
+  result
   return(list_to_df(result[["dataset"]]))
+  # TODO: Add properties
+# df$dataset$label
+# df$dataset$dimension$id
+# df[["dataset"]][["dimension"]][["Byggnadsperiod"]][["label"]]
 
 }
 
-list_to_df <- function(scb) {
+list_to_df <- function(scb, keys = TRUE) {
   cnames = scb[["dimension"]][["id"]]
     sizes = scb[["dimension"]][["size"]]
 
@@ -108,8 +114,11 @@ list_to_df <- function(scb) {
         after = if(i < length(sizes))  Reduce(`*`, sizes[(i+1):length(sizes)]) else 1
         before = if(i > 1)  Reduce(`*`, sizes[1:(i-1)]) else 1
         # Names instead of label
-        # nn = names(scb$dimension[[cnames[i]]][["category"]][["label"]])
-        nn = unlist(scb[["dimension"]][[cnames[i]]][["category"]][["label"]])
+        if (keys) {
+          nn = names(scb$dimension[[cnames[i]]][["category"]][["label"]])
+        } else {
+          nn = unlist(scb[["dimension"]][[cnames[i]]][["category"]][["label"]])
+        }
         df[[cnames[i]]] = rep(nn, times = before, each = after)
     }
     df[["values"]] = unlist(scb[["value"]])
